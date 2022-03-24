@@ -1,0 +1,42 @@
+{% extends 'proyectoWebApp/base.html' %}
+
+ {%load static %}
+
+{%block content %}
+{% for post in posts %}
+
+    <section class="page-section clearfix">
+        <div class="container">
+          <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src= "{{post.imagen.url}}" alt="">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+              <h2 class="section-heading mb-4" >
+                <span class="section-heading-lower">{{post.titulo}}</span>
+                <span class="section-heading-upper">{{post.contenido}}</span>
+                <span class="section-heading-upper">Autor: {{post.autor}}</span>
+              </h2>
+              
+             
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- <div><p>
+        <h2 style="color:white">{{servicio.titulo}} </h2>
+        <p style="color:white">{{servicio.contenido}} </p>
+        <p><img src="{{servicio.imagen.url}} " style="height: 10vh; width: 10%vw;" alt=""></p>
+    </p>
+
+    </div> -->
+    {% endfor %}
+    <section>
+        <div style="width: 70vw; text-align: center;color: white;"> 
+            Categorias: 
+            {% for post in posts %}
+                {% for categoria in post.categorias.all %}
+             <a style="color:white" href="{% url 'Categoria' categoria.id %}" > {{categoria.nombre}} </a> <!--lo que esta entre % me dice que cuando apriete en el vinculo me lleve a la url categoria con el parametro categoria.id--> 
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
