@@ -23,7 +23,15 @@
       
         <span class="site-heading-lower">Gestión de Pedidos</span>
       </h1>
-
+      <div style="color:aliceblue; text-align:right ;margin-right: 50px; ">
+        {% if user.is_authenticated %}
+        Bienvenido {{user.username}}
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        {% else %}
+        <a href="{% url 'logear' %}">Login</a>
+        <a href="{% url 'Autenticacion' %}">Registrate</a>
+        {% endif %}
+      </div>
 
  <!-- Navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
@@ -53,6 +61,7 @@
         </ul>
       </div>
     </div>
+    
   </nav>
 
 
