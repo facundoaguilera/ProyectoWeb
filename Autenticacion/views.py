@@ -29,7 +29,7 @@ def cerrarSesion(request):
     return redirect('Home')
 
 def logear(request):
-    if request.method == 'POST':
+    if request.method == 'POST': #si pulso el boton de Login
         form=AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             nombre_usuario=form.cleaned_data.get('username')
@@ -39,9 +39,9 @@ def logear(request):
                 login(request,usuario)
                 return redirect('Home')
             else:
-                message.error(request,'usuario no valido')
-    else:
-        message.error(request,'informacion no valida')
+                messages.error(request,'usuario no valido')
+        else:
+            messages.error(request,'informacion no valida')
     form=AuthenticationForm
     return render(request, 'login/login.html',{'form':form})
 
